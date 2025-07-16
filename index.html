@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habilitação de Certificados</title>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <h1>Gerador de Arquivo .XLSX para habilitação de certificado</h1>
+    <form id="form-dados" action="adddados.php" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required>
+        <br><br>
+        <label for="num_serie">Número de Série:</label>
+        <input type="text" name="num_serie" id="num_serie" required>
+        <br><br>
+        <label for="ativar">Ativar:</label>
+        <select name="ativar" id="ativar" required>
+            <option value="SIM">SIM</option>
+            <option value="NÃO">NÃO</option>
+        </select>
+        <br><br>
+        <label for="motivo">Motivo de desativação/ativação:</label>
+        <select name="motivo" id="motivo" required>
+            <option value="1">1 - Fim do período de uso contratado</option>
+            <option value="4">4 - Período de uso renovado</option>
+        </select>
+        <br><br>
+        <label for="data_inicial">Data Inicial:</label>
+        <input type="date" name="data_inicial" id="data_inicial" required>
+        <br><br>
+        <label for="data_final">Data Final:</label>
+        <input type="date" name="data_final" id="data_final" required>
+        <br><br>
+        <input type="submit" value="Adicionar Dados">
+    </form>
+    <form action="gerarcsv.php" method="post">
+    <h1>Gerar XLSX</h1>
+    <button type="button" onclick="baixarXLSX()">Gerar XLSX</button>
+</body>
+<footer>
+    <p>Desenvolvido por Theo Cardoso Stracke</p>
+<script>
+function baixarXLSX() {
+    fetch('dados.csv')
+        .then(response => {
+            if (!response.ok) throw new Error('Nenhum dado para exportar!');
+            return response.text();
+        })
+        .then(csv => {
+            const linhas = csv.split('\n').filter(l => l.trim() !== '');
+            const dados = linhas.map(linha => linha.split(','));
+            const ws = XLSX.utils.aoa_to_sheet(dados);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Planilha1');
+            XLSX.writeFile(wb, 'TemplateSafeID.xlsx');
+            // Exclui o CSV após baixar
+            fetch('excluircsv.php', { method: 'POST' });
+        })
+        .catch(() => alert('Nenhum dado para exportar!'));
+}
+</script>
+</footer>
+</html>
