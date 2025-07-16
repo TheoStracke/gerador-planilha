@@ -14,7 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         unlink($filename); 
         exit;
     } else {
-        echo "<script>alert('Nenhum arquivo CSV para baixar!'); window.location.href='index.html';</script>";
+        echo "<script>
+          Swal.fire({
+            title: 'Atenção!', // 
+            text: 'Nenhum dado para exportar! Adicione algum registro primeiro.',
+            icon: 'warning', // Ícones: 'warning', 'error', 'success', 'info'
+            confirmButtonText: 'OK'
+          });
+        </script>";
     }
 }
 ?>
