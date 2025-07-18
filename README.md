@@ -36,3 +36,10 @@ Este projeto é uma aplicação web simples feita em PHP e HTML+JavaScript para 
 - O projeto não depende de banco de dados.
 - O XLSX é gerado no navegador, não no servidor.
 - O sistema é simples e ideal para uso local ou em ambientes controlados.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+# Versão 2.0 com executável
+
+### Gerador de planilha 2.0[Repositório](https://github.com/TheoStracke/gerador-planilha-v2.0)
