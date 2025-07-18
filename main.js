@@ -49,9 +49,8 @@ function renderPreviewTable() {
 
     previewData.forEach((rowData, index) => {
         const tr = document.createElement('tr');
-        // Adicionando animação de slide-in para cada linha
         tr.style.animation = `slideInUp 0.3s ease-out ${index * 0.05}s forwards`;
-        tr.style.opacity = 0; // Inicia opaco para a animação funcionar
+        tr.style.opacity = 0;
 
         rowData.forEach(cellData => {
             const td = document.createElement('td');
@@ -62,8 +61,6 @@ function renderPreviewTable() {
     });
 }
 
-// Adiciona a regra CSS para a animação slideInUp dinamicamente
-// Isso garante que a animação seja definida mesmo que o CSS seja separado
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(`
     @keyframes slideInUp {
@@ -132,7 +129,6 @@ function baixarXLSX() {
     limparPreview(); 
 }
 
-// Adiciona o efeito ripple aos botões
 document.querySelectorAll('.btn').forEach(button => {
     button.addEventListener('click', function(e) {
         const x = e.clientX - e.target.offsetLeft;
@@ -150,12 +146,8 @@ document.querySelectorAll('.btn').forEach(button => {
     });
 });
 
-// Renderiza a tabela de preview ao carregar a página (inicialmente vazia)
 document.addEventListener('DOMContentLoaded', renderPreviewTable);
 
-// Atribui as funções globalmente para que possam ser chamadas pelo onclick no HTML
-// Esta é uma alternativa para adicionar event listeners via JavaScript
-// e é necessária quando você usa onclick="someFunction()" diretamente no HTML
 window.adicionarDadosAoPreview = adicionarDadosAoPreview;
 window.limparPreview = limparPreview;
 window.baixarXLSX = baixarXLSX;
