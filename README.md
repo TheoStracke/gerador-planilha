@@ -42,4 +42,4 @@ Este projeto é uma aplicação web simples feita em PHP e HTML+JavaScript para 
 
 # Versão 2.0 com executável
 
-### Gerador de planilha 2.0[Repositório](https://github.com/TheoStracke/gerador-planilha-v2.0)
+### Gerador de planilha 2.0 [Repositório](https://github.com/TheoStracke/gerador-planilha-v2.0)
